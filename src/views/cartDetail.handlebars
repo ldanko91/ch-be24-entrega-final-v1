@@ -1,0 +1,38 @@
+<h1>Productos en el carrito</h1>
+<h2>ID: {{ccod}}</h2>
+
+<div class="cart-buttons">
+    <button class="confirm-btn" onclick="goPurchase('{{ccod}}')">Confirmar compra!</button>
+    <button class="empty-btn" onclick="emptyCart('{{ccod}}')">Vaciar carrito</button>
+</div>
+
+<section id="carrito">
+    <div class="product-container">
+        {{#each products}}
+        <div class="product-card">
+            <h3>{{this.id.title}}</h3>
+            <ul>
+                <li>Cantidad: {{this.quantity}}</li>
+                <li>{{this.id.description}}</li>
+                <li>Categoría: {{this.id.category}}</li>
+                <li>Código: {{this.id.code}}</li>
+                <li>Stock: {{this.id.stock}}</li>
+                <li>ID: {{this.id._id}}</li>
+            </ul>
+            <button onclick="delFromCart('{{_id}}','{{../ccod}}')">Eliminar del carrito</button>
+        </div>
+        {{/each}}
+    </div>
+
+    <div class="pagination">
+        {{#if hasPrevPage}}
+        <a href="./products/{{prevPage}}"><button>Anterior</button></a>
+        {{/if}}
+        <p>Página {{page}} de {{totalPages}}</p>
+        {{#if hasNextPage}}
+        <a href="products/?page={{nextPage}}"><button>Siguiente</button></a>
+        {{/if}}
+    </div>
+</section>
+
+<script src="/js/carts.js"></script>

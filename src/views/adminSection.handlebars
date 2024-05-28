@@ -1,0 +1,47 @@
+<h1>Bienvenido Admin!</h1>
+<section id="perfil">
+    <div class="user-detail-card">
+        <div class="user-profile-img">
+            {{#if profile.profileImg}}
+                <img src="{{profile.profileImg}}" alt="Imagen de perfil">
+            {{else}}
+                <img src="/images/default-profile.png" alt="Imagen de perfil">
+            {{/if}}
+        </div>
+        <ul>
+            <li>Nombre completo: {{profile.first_name}} {{profile.last_name}}</li>
+            <li>ID: {{profile._id}}</li>
+            <li>{{profile.email}}</li>
+            <li>Edad: {{profile.age}}</li>
+            <li>Rol: {{profile.role}}</li>
+        </ul>
+        <div>
+            <h2>Cargar imagen de perfil</h2>
+            <form action='/api/users/profile' method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="userId" value="{{profile._id}}">
+                <input type="file" name="file" accept="image/*" required>
+                <button type="submit">Subir imagen</button>
+            </form>
+        </div>
+        <a href="/api/products/backoffice">
+            <h2>Ir al administrador de productos</h2>
+        </a>
+        <a href="/api/users">
+            <h3>Ir al administrador de usuarios</h3>
+        </a>
+    </div>
+    <h2>Listado de usuarios</h2>
+    <div class="user-list">
+        {{#each users}}
+        <div class="user-detail-card">
+            <ul>
+                <li>Nombre completo: {{first_name}} {{last_name}}</li>
+                <li>ID: {{_id}}</li>
+                <li>{{email}}</li>
+                <li>Edad: {{age}}</li>
+                <li>Rol: {{role}}</li>
+            </ul>
+        </div>
+        {{/each}}
+    </div>
+</section>

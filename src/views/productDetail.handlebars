@@ -1,0 +1,45 @@
+<h3>Carrito activo: {{cartCode}}</h3>
+    <h1>Detalle del producto</h1>
+
+        <a href="/api/products">
+            <h3>Volver al listado general</h3>
+        </a>
+    <section id="productos">
+        <div class="product-detail-card">
+            {{#each productos}}
+            <div class="product-carousel">
+                {{#each thumbnail}}
+                <div>
+                    <img src="{{this}}" alt="{{../title}}" class="product-thumbnail">
+                </div>
+                {{/each}}
+            </div>
+            <a href="/api/products/{{code}}">
+                <h2>{{title}}</h2>
+            </a>
+            <h3>${{price}}</h3>
+            <ul>
+                <li>ID: {{_id}}</li>
+                <li>{{description}}</li>
+                <li>Categoría: {{category}}</li>
+                <li>Código: {{code}}</li>
+                <li>Stock: {{stock}}</li>
+            </ul>
+            <button onclick="addToCart('{{_id}}','{{../cartCode}}')">Agregar al carrito!</button>
+            {{/each}}
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.product-carousel').slick({
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                dots: true
+            });
+        });
+    </script>
+    <script src="/js/product.js"></script>

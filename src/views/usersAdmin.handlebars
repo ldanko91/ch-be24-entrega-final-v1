@@ -1,0 +1,38 @@
+<h1>Administrador de usuarios</h1>
+<section id="perfil">
+    <h3>Tu perfil</h3>
+    <div class="user-detail-card">
+        <ul>
+            <li>Nombre completo: {{profile.first_name}} {{profile.last_name}}</li>
+            <li>ID: {{profile._id}}</li>
+            <li>{{profile.email}}</li>
+            <li>Edad: {{profile.age}}</li>
+            <li>Rol: {{profile.role}}</li>
+        </ul>
+    </div>
+</section>
+
+<section id="usuarios">
+    <h2>Listado de usuarios</h2>
+    <div class="user-list">
+        {{#each users}}
+        <div class="user-detail-card">
+            <h3>{{first_name}} {{last_name}}</h3>
+            <ul>
+                <li>ID: {{_id}}</li>
+                <li>{{email}}</li>
+                <li>Edad: {{age}}</li>
+                <li>Rol: {{role}}</li>
+                <li>Documentos cargados: {{documents}}</li>
+                <li>Última vez conectado: {{lastConnection}}</li>
+            </ul>
+            <button onclick="askPremium('{{_id}}')">Asignar Premium</button>
+            <button style="background-color: rgba(255, 0, 0, 0.534);" onclick="delUser('{{_id}}')">Eliminar Usuario</button>
+        </div>
+        {{/each}}
+    </div>
+    <a href="/api/products">
+        <h3>Volver al listado general</h3>
+    </a>
+</section>
+<script src="/js/users.js"></script>
